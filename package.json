@@ -1,6 +1,6 @@
 {
   "name": "redux-store-injector",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "keywords": [
     "React",
@@ -69,8 +69,10 @@
     "typescript": "3.8.3"
   },
   "peerDependencies": {
+    "@reduxjs/toolkit": "^1.5.0",
     "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "react-dom": "16.13.0",
+    "redux-saga": "^1.1.3"
   },
   "husky": {
     "hooks": {
