@@ -1,0 +1,103 @@
+{
+  "name": "redux-store-injector",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [
+    "React",
+    "TypeScript",
+    "Redux",
+    "Redux-saga"
+  ],
+  "author": "Artemelka <artemelka.ru@gmail.com>",
+  "homepage": "artemelka.ru",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test:watch": "jest --watch",
+    "test": "set CI=true && jest",
+    "test:coverage": "jest --coverage",
+    "alias-resolve": "tscpaths -p tsconfig.json -s ./lib -o ./dist",
+    "compile": "rm -fr ./dist && tsc --project tsconfig.json",
+    "lint": "npx eslint ./lib --ext .ts,.tsx --fix && npx stylelint --fix --max-warnings=0 ./lib",
+    "commit": "git add . && git commit --no-edit",
+    "release": "npm run commit && git push && npm publish --access=public && npm run deploy",
+    "beta": "npm run commit && git push && npm publish --tag beta --access=public",
+    "build": "npm run compile && npm run alias-resolve && bash config/build/helper.sh",
+    "build:storybook": "build-storybook",
+    "start": "start-storybook -p 6006"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Artemelka/redux-store-injector"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "9.1.2",
+    "@storybook/addon-actions": "6.0.22",
+    "@storybook/addon-console": "1.2.2",
+    "@storybook/addon-docs": "6.0.22",
+    "@storybook/addon-essentials": "6.0.22",
+    "@storybook/addon-knobs": "6.0.22",
+    "@storybook/addon-links": "6.0.22",
+    "@storybook/addon-viewport": "6.0.22",
+    "@storybook/react": "6.0.22",
+    "@types/classnames": "2.2.10",
+    "@types/jest": "24.9.1",
+    "@types/node-sass": "4.11.0",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.8",
+    "@wildberries/eslint-config": "1.0.3",
+    "@wildberries/stylelint-config": "1.0.0",
+    "commitizen": "4.2.1",
+    "compression-webpack-plugin": "4.0.0",
+    "cross-env": "7.0.2",
+    "css-loader": "4.3.0",
+    "cz-customizable": "6.2.0",
+    "dotenv": "8.2.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "glob": "7.1.6",
+    "husky": "3.0.9",
+    "jest": "25.1.0",
+    "node-sass": "4.13.1",
+    "rimraf": "3.0.2",
+    "sass-loader": "10.0.2",
+    "style-loader": "1.2.1",
+    "ts-jest": "25.4.0",
+    "tscpaths": "0.0.9",
+    "typescript": "3.8.3"
+  },
+  "peerDependencies": {
+    "react": "16.13.0",
+    "react-dom": "16.13.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g config/git/commitlint.js",
+      "pre-commit": "npm run lint && git add . && npm run build",
+      "prepare-commit-msg": "node ./config/git/prepare-commit.js"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "@wildberries"
+    ]
+  },
+  "stylelint": {
+    "extends": "@wildberries/stylelint-config"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "config/git/commitizen.js"
+    }
+  },
+  "dependencies": {},
+  "files": [
+    "dist"
+  ]
+}
