@@ -1,0 +1,25 @@
+
+# dependencies
+node_modules
+
+# testing
+coverage
+
+# build
+build
+dist
+
+# envs
+.env
+
+# Misc
+.DS_Store
+
+# ide
+.idea
+.vscode
+
+
+# videoshots
+videoshot-with-error/
+
