@@ -17,11 +17,17 @@ yarn add @artemelka/redux-store-injector
 
 Here is a quick example to get you started.
 
-####Store initialization:
+#### Store initialization:
 
 ```jsx
-import { configureStore, combineReducers, createSlice } from '@reduxjs/toolkit';
-import { createInjectorEnhancer, AppStore } from '@artemelka/redux-store-injector';
+import {
+  configureStore,
+  combineReducers,
+  createSlice
+} from '@reduxjs/toolkit';
+import {
+  createInjectorEnhancer
+} from '@artemelka/redux-store-injector';
 import createSagaMiddleware from 'redux-saga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -38,6 +44,7 @@ const appReducer = createSlice({
        }
    }
 });
+
 const createReducer = (asyncReducers) => combineReducers({
    appLoader: appReducer,
    ...(asyncReducers ? asyncReducers : {})
@@ -53,7 +60,7 @@ export const appStore = configureStore({
 });
 ```
 
-####inject reducers and sagas
+#### Inject reducers and sagas
 
 ```jsx
 import React from 'react';
@@ -71,7 +78,7 @@ export const Page = (props) => {
               reducer: pageReducer
             }]}
             asyncSagas={[{
-              name: 'GET_REQUEST_WATCHER_SAGA_NAME',
+              name: 'GET_REQUEST_WATCHER_SAGA',
               saga: getRequestWatcherSaga
             }]}
             withEjectReducers
